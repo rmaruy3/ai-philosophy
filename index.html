@@ -447,6 +447,7 @@ details.lex-index-group[open] > .lex-index-head::before{content:"\2212";}
 
 
 /* ===== Post-publication addenda ===== */
+.addendum .addendum-title,.addendum > p,.addendum .addendum-sub,.ai-text{color:#5b3f8c;}
 .addenda-notice{border:2px solid #b45309;background:#fff7ed;color:#7c2d12;border-radius:8px;padding:0.9rem 1.1rem;margin:0.6rem 0 1.2rem;font-size:0.92rem;line-height:1.8;}
 .addenda-notice strong{display:inline-block;background:#b45309;color:#fff;border-radius:4px;padding:0 0.5em;margin-right:0.4em;font-size:0.85rem;}
 .addendum-sub{font-family:var(--sans);font-size:0.95rem;font-weight:700;margin:1.6rem 0 0.4rem;}
@@ -815,7 +816,7 @@ function addendumHtml(a){
 function addendaBlockHtml(n){
   const list = addendaFor(n,"theme");
   if(!list.length) return "";
-  return `<div class="addenda-block"><h3>刊行後の動き（試作版）</h3><div class="addenda-notice"><strong>試作版です</strong>　この「刊行後の動き」は試験的に公開しているものです。文章はAI（AnthropicのClaude）が下書きし、著者が取り上げる話題と書き方を選んで確認しています。誤りや見落としを含む可能性があるため、詳しくは各出典をご確認ください。内容は今後見直します。</div><p class="addenda-lead">本書の刊行（2026年2月12日）後の出来事や議論をまとめた補遺です。本文の記述は刊行時点のままです。<a href="#addenda">補遺の一覧</a></p>${list.map(addendumHtml).join("")}</div>`;
+  return `<div class="addenda-block"><h3>刊行後の動き（試作版）</h3><div class="addenda-notice"><strong>試作版です</strong>　この「刊行後の動き」は試験的に公開しているものです。文章はAIが下書きし、著者が取り上げる話題と書き方を選んで確認しています。<span class="ai-text">AIが下書きした文章は、この色で表示しています。</span>誤りや見落としを含む可能性があるため、詳しくは各出典をご確認ください。内容は今後見直します。</div><p class="addenda-lead">本書の刊行（2026年2月12日）後の出来事や議論をまとめた補遺です。本文の記述は刊行時点のままです。<a href="#addenda">補遺の一覧</a></p>${list.map(addendumHtml).join("")}</div>`;
 }
 function readingAddenda(n){
   return addendaFor(n,"reading").flatMap(a=>(a.books||[]).map(b=>Object.assign({added:a.added},b)));
@@ -840,7 +841,7 @@ function renderAddendaMount(){
     </summary>
     <div class="lexicon-body">
       
-      <div class="addenda-notice"><strong>試作版です</strong>　この「刊行後の動き」は試験的に公開しているものです。文章はAI（AnthropicのClaude）が下書きし、著者が取り上げる話題と書き方を選んで確認しています。誤りや見落としを含む可能性があるため、詳しくは各出典をご確認ください。内容は今後見直します。</div>
+      <div class="addenda-notice"><strong>試作版です</strong>　この「刊行後の動き」は試験的に公開しているものです。文章はAIが下書きし、著者が取り上げる話題と書き方を選んで確認しています。<span class="ai-text">AIが下書きした文章は、この色で表示しています。</span>誤りや見落としを含む可能性があるため、詳しくは各出典をご確認ください。内容は今後見直します。</div>
       <p class="addenda-index-intro">AIをめぐる状況は本書の刊行後も大きく動いています。本書の章立てを手がかりに、刊行後に現れた技術・出来事・政策・議論のうち、本書の議論を読むうえで知っておきたいものをまとめています。各章のページにも同じ内容を載せています。</p>
       ${body}
     </div>
