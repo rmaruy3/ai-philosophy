@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI×哲学 刊行後トラッカー レビュー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* 本書サポートサイトの配色を継承。左に章ナビ、右に章ごとの候補カード。状態は左端の帯で示す */
+:root{
+  --bg:#F7F8F9;
+  --card:#FFFFFF;
+  --fg:#1A1A1A;
+  --sub:#5E6368;
+  --rule:#E1E5E8;
+  --accent:#146390;
+  --accent-soft:#E6F0F6;
+  --tech:#1B527A;
+  --phil:#524877;
+  --society:#1C6259;
+  --overview:#545454;
+  --adopt:#1E7A46;
+  --hold:#A86A00;
+  --reject:#9AA0A6;
+  --warn-bg:#FFF4DC;
+  --warn-fg:#7A5200;
+  --sans:'Noto Sans JP', system-ui, sans-serif;
+  --label:'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121518; --card:#1B1F23; --fg:#E8EAEC; --sub:#A3A9AF; --rule:#2C3238;
+    --accent:#5FB0E0; --accent-soft:#1A2C38;
+    --tech:#6FA3CC; --phil:#A99CD6; --society:#6FBFB2; --overview:#A0A0A0;
+    --adopt:#4FBF7F; --hold:#E0A53A; --reject:#6B7177;
+    --warn-bg:#3A2E14; --warn-fg:#F0C878;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121518; --card:#1B1F23; --fg:#E8EAEC; --sub:#A3A9AF; --rule:#2C3238;
+  --accent:#5FB0E0; --accent-soft:#1A2C38;
+  --tech:#6FA3CC; --phil:#A99CD6; --society:#6FBFB2; --overview:#A0A0A0;
+  --adopt:#4FBF7F; --hold:#E0A53A; --reject:#6B7177;
+  --warn-bg:#3A2E14; --warn-fg:#F0C878;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+button,textarea,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+header.top{padding:24px 20px 16px;border-bottom:1px solid var(--rule);background:var(--card)}
+.top-inner{max-width:1180px;margin:0 auto;display:grid;gap:14px}
+.eyebrow{font-family:var(--label);font-size:12px;letter-spacing:.08em;color:var(--sub);text-transform:uppercase}
+h1{margin:0;font-size:22px;font-weight:700;line-height:1.4;text-wrap:balance}
+.lede{margin:0;color:var(--sub);font-size:14px;max-width:62ch}
+.tally{display:flex;flex-wrap:wrap;gap:8px}
+.tally .t{display:flex;align-items:baseline;gap:6px;padding:6px 12px;border:1px solid var(--rule);border-radius:6px;background:var(--bg);font-size:13px}
+.tally .t b{font-family:var(--label);font-size:18px;font-variant-numeric:tabular-nums}
+.tally .t.adopt b{color:var(--adopt)} .tally .t.hold b{color:var(--hold)} .tally .t.reject b{color:var(--reject)}
+.status-line{font-size:12px;color:var(--sub);min-height:1.5em}
+.status-line.err{color:#B3261E}
+
+.layout{max-width:1180px;margin:0 auto;padding:20px;display:grid;grid-template-columns:240px 1fr;gap:28px;align-items:start}
+@media (max-width:820px){.layout{grid-template-columns:1fr}}
+
+nav.side{position:sticky;top:12px;display:grid;gap:18px}
+@media (max-width:820px){nav.side{position:static}}
+.side h2{font-size:12px;font-family:var(--label);letter-spacing:.06em;color:var(--sub);margin:0 0 6px;font-weight:600}
+.chlist{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.chbtn{width:100%;display:grid;grid-template-columns:2.2em 1fr auto;gap:6px;align-items:center;text-align:left;padding:5px 8px;border:0;border-radius:6px;background:transparent;cursor:pointer;font-size:13px;line-height:1.4}
+.chbtn:hover{background:var(--accent-soft)}
+.chbtn[aria-pressed="true"]{background:var(--accent-soft);font-weight:700}
+.chbtn .n{font-family:var(--label);font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums}
+.chbtn .c{font-family:var(--label);font-size:11px;font-variant-numeric:tabular-nums;padding:0 7px;border-radius:10px;background:var(--rule);color:var(--sub)}
+.chbtn .c.has{background:var(--accent);color:#fff}
+.chbtn.empty{color:var(--sub)}
+.filters{display:grid;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--rule);background:var(--card);border-radius:14px;padding:2px 10px;font-size:12px;cursor:pointer;line-height:1.7}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
+.check{display:flex;gap:6px;align-items:center;font-size:13px}
+
+main{display:grid;gap:36px;min-width:0}
+.box{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;display:grid;gap:8px}
+.box label{font-size:13px;font-weight:700}
+.box .hint{font-size:12px;color:var(--sub);margin:0}
+textarea{width:100%;min-height:64px;resize:vertical;border:1px solid var(--rule);border-radius:6px;padding:8px 10px;background:var(--bg);line-height:1.6;font-size:14px}
+.saved{font-size:11px;color:var(--sub);font-family:var(--label);min-height:1.4em}
+
+section.ch{display:grid;gap:14px}
+.chhead{display:grid;gap:6px;border-left:4px solid var(--part,var(--overview));padding-left:12px}
+.chhead .part{font-family:var(--label);font-size:12px;color:var(--part,var(--sub));font-weight:600}
+.chhead h2{margin:0;font-size:19px;line-height:1.45;text-wrap:balance}
+.secs{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--sub);margin:0;padding:0;list-style:none}
+.empty-note{font-size:13px;color:var(--sub);padding:12px 16px;border:1px dashed var(--rule);border-radius:8px}
+
+article.card{position:relative;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:16px 18px 14px 22px;display:grid;gap:10px}
+article.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:8px 0 0 8px;background:var(--rule)}
+article.card[data-status="adopt"]::before{background:var(--adopt)}
+article.card[data-status="hold"]::before{background:var(--hold)}
+article.card[data-status="reject"]::before{background:var(--reject)}
+article.card[data-status="reject"] .body{opacity:.6}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+.date{font-family:var(--label);font-variant-numeric:tabular-nums;color:var(--sub);margin-right:4px}
+.tag{border-radius:4px;padding:0 7px;font-size:11.5px;line-height:1.8;border:1px solid var(--rule)}
+.tag.cat{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-weight:500}
+.tag.rel-challenge{border-color:#C0392B;color:#C0392B}
+.tag.rel-update{border-color:var(--accent);color:var(--accent)}
+.tag.rel-extend{border-color:var(--phil);color:var(--phil)}
+.tag.rel-reinforce{border-color:var(--society);color:var(--society)}
+.tag.warn{background:var(--warn-bg);color:var(--warn-fg);border-color:transparent}
+.tag.lit{color:var(--sub)}
+.tag.id{font-family:var(--label);color:var(--sub);border:0;padding:0}
+.body{display:grid;gap:8px}
+.card h3{margin:0;font-size:16px;line-height:1.55;text-wrap:balance}
+.summary{margin:0;max-width:70ch}
+.relation{background:var(--bg);border-radius:6px;padding:8px 12px;font-size:14px;max-width:72ch}
+.relation .rl{font-size:12px;font-weight:700;color:var(--sub);display:block}
+.small{font-size:12.5px;color:var(--sub);margin:0}
+.small b{color:var(--fg);font-weight:500}
+.srcs{margin:0;padding-left:1.2em;font-size:13px}
+.srcs .k{font-size:11px;color:var(--sub);margin-left:4px}
+.review{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;align-items:start;border-top:1px solid var(--rule);padding-top:10px}
+@media (max-width:560px){.review{grid-template-columns:1fr}}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--card);padding:4px 12px;font-size:13px;cursor:pointer;border-right:1px solid var(--rule)}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--accent-soft)}
+.seg button[aria-pressed="true"][data-v="adopt"]{background:var(--adopt);color:#fff}
+.seg button[aria-pressed="true"][data-v="hold"]{background:var(--hold);color:#fff}
+.seg button[aria-pressed="true"][data-v="reject"]{background:var(--reject);color:#fff}
+.review textarea{min-height:40px;font-size:13px}
+.ro .seg button,.ro textarea{pointer-events:none;opacity:.7}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="eyebrow">現代社会を生きるための AI×哲学 ／ 刊行後トラッカー</div>
+    <h1>刊行後の動き 候補レビュー</h1>
+    <p class="lede">本書（2026年2月12日刊行）の章立てを基準に、刊行後に現れた新技術・インシデント・政策・議論の候補を並べています。採用・保留・却下とコメント、章ごとの指示を残すと、次の収集と公開に反映します。</p>
+    <div class="tally" id="tally"></div>
+    <div class="status-line" id="status" role="status" aria-live="polite">読み込み中…</div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side" aria-label="章と絞り込み">
+    <div>
+      <h2>章</h2>
+      <ul class="chlist" id="chlist"></ul>
+    </div>
+    <div class="filters">
+      <div>
+        <h2>分類</h2>
+        <div class="chips" id="catchips"></div>
+      </div>
+      <div>
+        <h2>状態</h2>
+        <div class="chips" id="statchips"></div>
+      </div>
+      <label class="check" for="litonly"><input type="checkbox" id="litonly"> 文献ありのみ</label>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="box" id="globalbox">
+      <label for="dir-global">全体への指示</label>
+      <p class="hint">収集の方針、粒度、優先したい観点など。次の収集の前に読みます。</p>
+      <textarea id="dir-global" data-dir="global" placeholder="例：社会面は日本の事例をもっと拾ってほしい"></textarea>
+      <div class="saved" id="saved-global"></div>
+    </div>
+    <div id="chapters"></div>
+  </main>
+</div>
+
+<script>
+const CHAPTERS=[
+ {n:0,t:"はじめに",p:"総論",s:["0.1 AIと暮らす時代","0.2 AIの社会的影響","0.3 未来の技術としてのAI","0.4 AIが問う人間観","0.5 AIに対する3つの態度","0.6 本書の構成"]},
+ {n:1,t:"社会の中の AI",p:"社会",s:["1.1 生成AIの時代","1.2 生成AIで何が変わったのか","1.3 現代におけるAIのリスク","1.4 利用者自身にとってのリスク","1.5 他者や社会が被るリスク：AIのELSI","1.6 人間に近づくAI"]},
+ {n:2,t:"AI とは何か？",p:"技術と哲学",s:["2.1 AIとは何か？","2.2 AIの歴史","2.3 計算パラダイムのシフトとAIのリスク"]},
+ {n:3,t:"記号的 AI と計算機",p:"技術",s:["3.1 計算機と記号的AIの知識表現","3.2 記号的AIが抱えた問題","3.3 哲学からの記号的AI批判"]},
+ {n:4,t:"パターン認識と機械学習",p:"技術",s:["4.1 パターン認識の課題","4.2 教師あり学習","4.3 教師なし学習と強化学習","4.4 機械学習モデルの構築と評価"]},
+ {n:5,t:"ニューラルネットワークと深層学習",p:"技術",s:["5.1 ニューラルネットワークとは何か？","5.2 深層学習の登場とインパクト","5.3 代表的な深層学習アーキテクチャ","5.4 自己教師あり学習と基盤モデル"]},
+ {n:6,t:"大規模言語モデルと生成AI",p:"技術",s:["6.1 統計的機械学習と自然言語処理","6.2 深層学習による言語処理","6.3 大規模言語モデルと生成AIの時代"]},
+ {n:7,t:"ロボティクスと身体の知",p:"技術と哲学",s:["7.1 身体と知能：実世界の困難さ","7.2 環境適応する知能：試行錯誤と学習","7.3 対象を操る知能：モデル化と予測","7.4 言語・基盤モデルとの融合"]},
+ {n:8,t:"AIから認知科学へ",p:"哲学",s:["8.1 AIと認知科学","8.2 計算主義","8.3 コネクショニズム","8.4 認知に関する新たな見方"]},
+ {n:9,t:"AI は意識を持てるか？",p:"哲学",s:["9.1 意識とは何か？","9.2 哲学における意識の問題","9.3 AIは意識を持てるか？","9.4 AIに意識は必要か？"]},
+ {n:10,t:"AI は感情を持てるか？",p:"哲学",s:["10.1 人間とAIにおける感情","10.2 感情の心理学","10.3 感情の哲学","10.4 AIに感情は必要か？"]},
+ {n:11,t:"AIは「人間」になれるか？",p:"哲学",s:["11.1 私たちとともに生きるロボット","11.2 人格としてのAI","11.3 関係性のデザイン"]},
+ {n:12,t:"AI ガバナンス",p:"社会",s:["12.1 AI時代の技術ガバナンス","12.2 技術の変化の速さへの対応","12.3 影響の広さへの対応","12.4 価値観や前提の変化"]},
+ {n:13,t:"未来のAI社会",p:"社会",s:["13.1 AIをめぐるディストピア論","13.2 AGI/ASIというビジョン","13.3 AIは制御不能になるのか","13.4 AIは職を奪うのか","13.5 AIは民主主義を脅かすのか"]},
+ {n:14,t:"私たちとAI",p:"社会と哲学",s:["14.1 AI技術のこれから","14.2 AIを通して「人間」を再発見する","14.3 AI社会のデザイナーになる","14.4 おわりに"]}
+];
+const PARTVAR={"技術":"--tech","哲学":"--phil","社会":"--society","総論":"--overview","技術と哲学":"--tech","社会と哲学":"--society"};
+const CAT={tech:"新技術",incident:"インシデント",policy:"政策・制度",discourse:"哲学・学術的議論"};
+const REL={reinforce:"補強",update:"更新",challenge:"揺さぶり",extend:"拡張"};
+const STAT={candidate:"未レビュー",adopt:"採用",hold:"保留",reject:"却下"};
+
+const S={items:[],reviews:{},dirs:{},ch:"all",cat:"all",stat:"all",lit:false,canWrite:true,loaded:false};
+let db=null;
+
+const $=s=>document.querySelector(s);
+const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad=n=>String(n).padStart(2,"0");
+const statusOf=id=>(S.reviews[id]&&S.reviews[id].decision)||"candidate";
+const safeUrl=u=>/^https?:\/\//.test(u||"")?u:"#";
+
+function setStatus(msg,err){const el=$("#status");el.textContent=msg;el.classList.toggle("err",!!err)}
+
+function filtered(){
+  return S.items.filter(it=>{
+    if(S.cat!=="all"&&it.category!==S.cat)return false;
+    if(S.stat!=="all"&&statusOf(it.id)!==S.stat)return false;
+    if(S.lit&&!it.has_literature)return false;
+    return true;
+  });
+}
+
+function renderTally(){
+  const c={candidate:0,adopt:0,hold:0,reject:0};
+  S.items.forEach(it=>c[statusOf(it.id)]++);
+  const chs=new Set(S.items.map(i=>i.chapter)).size;
+  $("#tally").innerHTML=
+    `<div class="t"><b>${S.items.length}</b>候補</div>`+
+    `<div class="t"><b>${chs}</b>/15章</div>`+
+    ["candidate","adopt","hold","reject"].map(k=>`<div class="t ${k}"><b>${c[k]}</b>${STAT[k]}</div>`).join("");
+}
+
+function renderNav(){
+  const counts={};S.items.forEach(it=>counts[it.chapter]=(counts[it.chapter]||0)+1);
+  let h=`<li><button class="chbtn" type="button" data-ch="all" aria-pressed="${S.ch==="all"}"><span class="n">全</span><span>すべての章</span><span class="c has">${S.items.length}</span></button></li>`;
+  CHAPTERS.forEach(c=>{
+    const k=counts[c.n]||0;
+    h+=`<li><button class="chbtn${k?"":" empty"}" type="button" data-ch="${c.n}" aria-pressed="${String(S.ch)===String(c.n)}"><span class="n">${pad(c.n)}</span><span>${esc(c.t)}</span><span class="c${k?" has":""}">${k}</span></button></li>`;
+  });
+  $("#chlist").innerHTML=h;
+  $("#catchips").innerHTML=[["all","すべて"],...Object.entries(CAT)].map(([k,v])=>`<button class="chip" type="button" data-cat="${k}" aria-pressed="${S.cat===k}">${v}</button>`).join("");
+  $("#statchips").innerHTML=[["all","すべて"],...Object.entries(STAT)].map(([k,v])=>`<button class="chip" type="button" data-stat="${k}" aria-pressed="${S.stat===k}">${v}</button>`).join("");
+}
+
+function cardHTML(it){
+  const st=statusOf(it.id);const rv=S.reviews[it.id]||{};
+  const rel=it.relation||{};
+  const secs=(it.sections||[]).join("・");
+  const related=(it.related_chapters||[]).map(n=>"第"+n+"章").join("、");
+  const relcats=(it.related_categories||[]).map(k=>CAT[k]).filter(Boolean).join("、");
+  const srcs=(it.sources||[]).map(s=>`<li><a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.title)}</a><span class="k">${esc(s.kind||"")}</span></li>`).join("");
+  return `<article class="card" data-status="${st}" id="item-${esc(it.id)}">
+    <div class="meta">
+      <span class="date">${esc(it.date)}</span>
+      <span class="tag cat">${esc(CAT[it.category]||it.category)}</span>
+      ${rel.kind?`<span class="tag rel-${esc(rel.kind)}">${esc(REL[rel.kind]||rel.kind)}</span>`:""}
+      ${it.has_literature?`<span class="tag lit">文献あり</span>`:""}
+      ${it.confidence==="要確認"?`<span class="tag warn">要確認</span>`:""}
+      <span class="tag id">${esc(it.id)}</span>
+    </div>
+    <div class="body">
+      <h3>${esc(it.title)}</h3>
+      <p class="summary">${esc(it.summary)}</p>
+      <div class="relation"><span class="rl">本書との関係${secs?"（"+esc(secs)+"）":""}</span>${esc(rel.note)}</div>
+      ${it.literature?`<p class="small"><b>文献</b>　${esc(it.literature)}</p>`:""}
+      ${srcs?`<ul class="srcs">${srcs}</ul>`:""}
+      ${(related||relcats)?`<p class="small">${related?"<b>関連章</b>　"+esc(related)+"　":""}${relcats?"<b>関連分類</b>　"+esc(relcats):""}</p>`:""}
+      ${it.caveat?`<p class="small"><b>注記</b>　${esc(it.caveat)}</p>`:""}
+    </div>
+    <div class="review${S.canWrite?"":" ro"}">
+      <div class="seg" role="group" aria-label="判定">
+        ${["adopt","hold","reject"].map(v=>`<button type="button" data-id="${esc(it.id)}" data-v="${v}" aria-pressed="${st===v}">${STAT[v]}</button>`).join("")}
+      </div>
+      <div>
+        <textarea id="cm-${esc(it.id)}" data-cm="${esc(it.id)}" placeholder="コメント（例：この観点で書き直して／一次資料を探して）" aria-label="${esc(it.title)}へのコメント">${esc(rv.comment||"")}</textarea>
+        <div class="saved" id="sv-${esc(it.id)}">${rv.updatedAt?"保存 "+esc(fmtTime(rv.updatedAt)):""}</div>
+      </div>
+    </div>
+  </article>`;
+}
+
+function fmtTime(iso){try{const d=new Date(iso);return `${d.getMonth()+1}/${d.getDate()} ${pad(d.getHours())}:${pad(d.getMinutes())}`}catch(e){return ""}}
+
+function renderMain(){
+  const list=filtered();
+  const chs=S.ch==="all"?CHAPTERS.filter(c=>S.items.some(i=>i.chapter===c.n)):CHAPTERS.filter(c=>String(c.n)===String(S.ch));
+  if(!S.loaded){$("#chapters").innerHTML="";return}
+  if(!chs.length){$("#chapters").innerHTML=`<div class="empty-note">まだ候補がありません。</div>`;return}
+  $("#chapters").innerHTML=chs.map(c=>{
+    const items=list.filter(i=>i.chapter===c.n).sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+    const dkey="ch"+pad(c.n);
+    return `<section class="ch" style="--part:var(${PARTVAR[c.p]||"--overview"})" aria-labelledby="h-${dkey}">
+      <div class="chhead">
+        <span class="part">第${c.n}章 ／ ${esc(c.p)}</span>
+        <h2 id="h-${dkey}">${esc(c.t)}</h2>
+        <ul class="secs">${c.s.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      </div>
+      <div class="box">
+        <label for="dir-${dkey}">第${c.n}章への指示</label>
+        <textarea id="dir-${dkey}" data-dir="${dkey}" placeholder="例：9.4の道徳的地位の論点をもっと厚く">${esc((S.dirs[dkey]||{}).note||"")}</textarea>
+        <div class="saved" id="saved-${dkey}">${(S.dirs[dkey]||{}).updatedAt?"保存 "+esc(fmtTime(S.dirs[dkey].updatedAt)):""}</div>
+      </div>
+      ${items.length?items.map(cardHTML).join(""):`<div class="empty-note">この章の候補は${S.items.some(i=>i.chapter===c.n)?"絞り込み条件に合うものがありません":"まだ収集していません"}。</div>`}
+    </section>`;
+  }).join("");
+}
+
+function renderAll(){renderTally();renderNav();renderMain();
+  const g=$("#dir-global");if(document.activeElement!==g)g.value=(S.dirs.global||{}).note||"";
+  $("#saved-global").textContent=(S.dirs.global||{}).updatedAt?"保存 "+fmtTime(S.dirs.global.updatedAt):"";
+  g.readOnly=!S.canWrite;
+}
+
+/* 書き込み：文書ごとに一度に一件、最新の内容だけを送る */
+const queue={};
+async function save(path,data,savedEl){
+  if(!db||!S.canWrite)return;
+  const q=queue[path]||(queue[path]={busy:false,next:null});
+  q.next=data;
+  if(q.busy)return;
+  q.busy=true;
+  while(q.next){
+    const d=q.next;q.next=null;
+    try{
+      await db.doc(path).set(d);
+      const el=savedEl&&document.getElementById(savedEl);if(el)el.textContent="保存 "+fmtTime(d.updatedAt);
+    }catch(e){
+      if(e&&e.code==="invalid_argument"){S.canWrite=false;setStatus("このページでは書き込みできません（閲覧のみ）。",true);renderAll();break}
+      setStatus("保存に失敗しました。少し待ってからもう一度操作してください。",true);
+    }
+  }
+  q.busy=false;
+}
+
+function setReview(id,patch){
+  const cur=Object.assign({decision:"candidate",comment:""},S.reviews[id]||{});
+  const next=Object.assign(cur,patch,{updatedAt:new Date().toISOString()});
+  S.reviews[id]=next;
+  save("reviews/"+id,{decision:next.decision,comment:next.comment,updatedAt:next.updatedAt},"sv-"+id);
+}
+
+const timers={};
+function debounce(key,fn,ms){clearTimeout(timers[key]);timers[key]=setTimeout(fn,ms)}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.ch!==undefined){S.ch=b.dataset.ch;renderNav();renderMain();window.scrollTo({top:0});return}
+  if(b.dataset.cat){S.cat=b.dataset.cat;renderNav();renderMain();return}
+  if(b.dataset.stat){S.stat=b.dataset.stat;renderNav();renderMain();return}
+  if(b.dataset.v&&b.dataset.id){
+    if(!S.canWrite)return;
+    const id=b.dataset.id;const v=statusOf(id)===b.dataset.v?"candidate":b.dataset.v;
+    const ta=document.getElementById("cm-"+id);
+    setReview(id,{decision:v,comment:ta?ta.value:((S.reviews[id]||{}).comment||"")});
+    const card=document.getElementById("item-"+id);
+    if(card){card.dataset.status=v;card.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v===v)))}
+    renderTally();
+  }
+});
+document.addEventListener("input",e=>{
+  const t=e.target;
+  if(t.dataset.cm){const id=t.dataset.cm;debounce("cm-"+id,()=>setReview(id,{comment:t.value}),900)}
+  if(t.dataset.dir){const k=t.dataset.dir;debounce("dir-"+k,()=>{const d={note:t.value,updatedAt:new Date().toISOString()};S.dirs[k]=d;save("directions/"+k,d,"saved-"+k)},900)}
+});
+$("#litonly").addEventListener("change",e=>{S.lit=e.target.checked;renderMain()});
+
+renderAll();
+
+(async()=>{
+  if(!window.claude||!window.claude.use){setStatus("データの保存機能を読み込めませんでした。claude.ai上でページを開いてください。",true);return}
+  db=await window.claude.use("db");
+  if(!db){setStatus("データの保存機能が使えない表示です。claude.aiにサインインした状態で開いてください。",true);return}
+  try{const user=await window.claude.use("user");if(user&&user.can){const w=await user.can("data.write");if(w===false)S.canWrite=false}}catch(e){}
+  let gotC=false;
+  const timer=setTimeout(()=>{if(!gotC)setStatus("データにまだ接続できません。通信状況を確認してください。",true)},10000);
+  db.collection("candidates").onSnapshot(snap=>{
+    S.items=snap.docs.map(d=>d.data()).filter(Boolean);
+    if(!snap.metadata.fromCache){gotC=true;clearTimeout(timer);S.loaded=true;setStatus(S.canWrite?"判定とコメントは自動で保存されます。":"閲覧のみのモードです。")}
+    else{S.loaded=true}
+    renderAll();
+  },err=>{clearTimeout(timer);setStatus("候補を読み込めませんでした（"+err.code+"）。",true)});
+  db.collection("reviews").onSnapshot(snap=>{
+    snap.docs.forEach(d=>{const id=d.id;const data=d.data();const ta=document.getElementById("cm-"+id);
+      if(ta&&document.activeElement===ta)return;
+      S.reviews[id]=data;});
+    renderTally();
+    if(!document.activeElement||document.activeElement.tagName!=="TEXTAREA")renderMain();
+  },()=>{});
+  db.collection("directions").onSnapshot(snap=>{
+    snap.docs.forEach(d=>{const ta=document.querySelector(`[data-dir="${d.id}"]`);if(ta&&document.activeElement===ta)return;S.dirs[d.id]=d.data()});
+    if(!document.activeElement||document.activeElement.tagName!=="TEXTAREA")renderAll();
+  },()=>{});
+})();
+</script>
+</body>
+</html>

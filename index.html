@@ -445,6 +445,32 @@ details.lex-index-group[open] > .lex-index-head::before{content:"\2212";}
   vertical-align:middle;border-radius:2px;
 }
 
+
+/* ===== Post-publication addenda ===== */
+.addendum-sub{font-family:var(--sans);font-size:0.95rem;font-weight:700;margin:1.6rem 0 0.4rem;}
+.addendum-ref a{font-size:0.7em;text-decoration:none;color:var(--accent,#146390);margin-left:1px;}
+.addendum-srch{font-size:0.78rem;font-weight:700;color:var(--sub);margin:1.4rem 0 0.3rem;}
+ol.addendum-sources{padding-left:1.6em;list-style:decimal;}
+ol.addendum-sources li::before{content:none!important;}
+
+.addenda-block{margin:2.6rem 0;}
+.addenda-block > h3{font-family:var(--label);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sub);margin-bottom:0.4rem;font-weight:600;}
+.addenda-block > .addenda-lead{font-size:0.82rem;color:var(--sub);margin-bottom:1.2rem;line-height:1.8;}
+.addendum{border-left:2px solid var(--accent-light);padding:0.2rem 0 0.2rem 1.2rem;margin:0 0 1.8rem;}
+.addendum-meta{font-family:var(--label);font-size:0.72rem;letter-spacing:0.04em;color:var(--sub);margin-bottom:0.35rem;}
+.addendum-title{font-family:var(--sans);font-weight:700;font-size:1.02rem;line-height:1.7;margin:0 0 0.6rem;}
+.addendum p{font-size:0.95rem;line-height:1.95;margin:0 0 0.8rem;}
+.addendum-sources{list-style:none;margin:0.6rem 0 0;padding:0;font-size:0.78rem;line-height:1.7;}
+.addendum-sources li{color:var(--sub);}
+.addendum-sources li::before{content:"出典　";font-family:var(--label);font-weight:600;}
+.addendum-sources a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
+.rg-added{font-family:var(--label);font-size:0.66rem;font-weight:600;letter-spacing:0.06em;color:var(--accent);border:1px solid var(--accent-light);border-radius:2px;padding:0 0.35rem;margin-left:0.5rem;vertical-align:middle;}
+.addenda-index-intro{font-size:0.92rem;line-height:1.95;margin:0.4rem 0 1.6rem;color:#333;}
+.addenda-ch{margin:0 0 2rem;}
+.addenda-ch-head{font-family:var(--sans);font-weight:700;font-size:0.95rem;margin:0 0 0.9rem;}
+.addenda-ch-head a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--rule);}
+.addenda-ch-head a:hover{color:var(--accent);}
+
 /* ===== Footer ===== */
 .site-footer{border-top:1px solid var(--rule);padding:3rem 1.5rem;text-align:center;}
 .site-footer p{font-size:0.8rem;color:var(--sub);margin-bottom:0.5rem;line-height:1.8;}
@@ -462,6 +488,7 @@ details.lex-index-group[open] > .lex-index-head::before{content:"\2212";}
         <a class="nav-link" href="#chapters">目次</a>
         <a class="nav-link" href="#chapter-0">「はじめに」全文</a>
         <a class="nav-link" href="#suisen">推薦</a>
+        <a class="nav-link" href="#addenda" data-addenda-link hidden>刊行後の補遺</a>
         <a class="nav-link" href="#lexicon">キーワード</a>
         <a class="nav-link" href="#book">書誌情報</a>
       </div>
@@ -504,6 +531,13 @@ details.lex-index-group[open] > .lex-index-head::before{content:"\2212";}
     <div id="chapters-fig-mount"></div>
   </section>
 
+  <div id="addenda-wrap" hidden>
+  <hr class="section-divider">
+  <section class="section" style="padding-bottom:0;">
+    <div id="addenda-mount"></div>
+  </section>
+  </div>
+
   <hr class="section-divider">
 
   <section class="section" style="padding-bottom:0;">
@@ -528,6 +562,7 @@ details.lex-index-group[open] > .lex-index-head::before{content:"\2212";}
   <p>© 2026 谷口忠大・鈴木貴之・丸山隆一　｜　書籍情報: <a href="https://www.kodansha.co.jp/book/products/9784065423738" target="_blank" rel="noopener">講談社のウェブサイト</a></p>
 </footer>
 
+<script src="assets/addenda.js"></script>
 <script>
 const DATA = {"chapters":[{"number":0,"title":"はじめに","part":"総論","sections":["0.1 AIと暮らす時代","0.2 AIの社会的影響","0.3 未来の技術としてのAI","0.4 AIが問う人間観","0.5 AIに対する3つの態度","0.6 本書の構成"],"digest":["2022年末のChatGPT公開を境に、AIは専門家のための難解な技術から、誰もが日常的に対話する存在へと姿を変えた。本章はこの変化を出発点に、生成AIがもたらす利便性と、フェイク画像や著作権問題に象徴される社会的な軋轢を対比的に描き出し、AIの理解がもはや専門家任せにできない「現代の教養」であることを示す。","興味深いのは、AIの得意・不得意がこれまでの常識を裏切る形で現れている点である。かつて人間の聖域とされた創造的な文章や絵画をAIがこなす一方、子どもでもできる部屋の片づけのような身体的作業は依然として難しい。この逆転現象は、「知能とは何か」という問いを新たな角度から私たちに突きつける。","著者らはAIへの向き合い方を「技術としてのAI」「心の哲学としてのAI」「社会の中のAI」という3つの観点に整理し、これらが互いに独立ではなく、技術の進歩が哲学的問いを生み、その問いが社会に影響し、社会の要請がまた技術を方向づけるという循環関係にあることを本書全体の設計図として提示する。"],"highlight":"AIの得意・不得意の逆転現象が、知能とは何かという問いを技術論から哲学的な人間観の問題へと押し広げている。","quote":{"text":"その複雑で本質的な問いを、読者1人1人が自分自身の言葉で考えていくための羅針盤となることを願っている。","note":"本書の狙いを述べた「はじめに」の結びの一文。"},"reading_guide":[],"question":"AI という複雑な技術と社会現象に対して、私たちはどのような視点から学び、向き合うべきか？","theme":"生成 AI が社会に急速に普及する中で、AI 技術・哲学・社会課題の複合的な理解が必要な時代背景を示す。","fulltext":[{"heading":"0.1 AIと暮らす時代","blocks":[{"type":"p","text":"AIと暮らす時代がやってきた。2020年代前半から普及し始めた生成AI（generative AI）は、自然言語を介して手軽に扱える技術として、またたく間に社会に広がっていった。AIの研究開発は半世紀以上の歴史を持つが、2020年代の生成AIブームに至って初めて、AIは一般の人々にまで普及したといえる。いまやAIは、手放せない道具として、もしくはパートナーとして、私たちの生活の一部となっている。"},{"type":"p","text":"2022年11月末にOpenAIによって発表されたChatGPTはやがて世界中に広がり、ITやAIの専門家のみならず、一般の人々が気軽に利用する存在となった。ChatGPTは人間の言語データをモデル化する大規模言語モデル（large language model, LLM）（第6章参照）に基づいている。大規模なモデルに基づくAIはその後どんどん進化を遂げ、2025年現在ではGoogleのGeminiや、xAIのGrokなどさまざまなAIが普及している。"},{"type":"p","text":"ChatGPTとの対話はとても自然である。質問に対する回答が的確なだけではなく、文脈を考慮に入れた会話が可能なため、まるで知的な対話相手のように感じられる。そのため、アイデアを出し合うブレインストーミングのパートナーとして、問題解決の相談相手として、老若男女を問わずに活用する人が増加している。教育現場での学習支援や、ビジネスシーンでの文書作成補助、プログラミング支援、さらには創作活動のインスピレーション源としても広く活用されるようになってきた。"},{"type":"p","text":"また、大規模言語モデルの普及と同時に、画像や動画を生成するAIも広まった。急速に発展した拡散モデル（diffusion model）やフローマッチング（flow matching）に基づく画像生成技術や動画生成技術は、本物と見まごう画像や動画を生成できるようになった。こうしたAIによる生成技術は、私たちの創作活動のあり方を大きく変えている。"}]},{"heading":"0.2 AIの社会的影響","blocks":[{"type":"p","text":"その一方で、いまや生成AIは政治を含む社会を揺るがす存在としても、無視できなくなってきている。"},{"type":"p","text":"その一例として、簡単にフェイクニュース画像や動画が作れるようになったことが挙げられる。2024年のドナルド・トランプとカマラ・ハリスが戦った米国の大統領選では、候補者のパロディ動画がSNSやYouTubeにとどまらず地上波でも公然と流れ、政治的な印象操作に用いられた。また画像生成モデルは、これまで世界中のアーティストたちが描いてきたイラストなどの作品を学習に（しばしば無断）使用している。長い時間をかけて技術を習得しイラストを描く絵師たちと、ただプロンプトを打ち込み、絵師たちの努力や投資にただ乗りしてそれっぽい画像や動画を出力する人々、そしてそれを可能にするAI開発者たちとの軋轢は深刻なものになっている。そのほか、生成AIの出力の正確性や信頼性の問題、個人情報やプライバシーの保護、AIによる差別や偏見の助長、雇用への影響など、生成AIに関する多岐にわたる課題が指摘されている。"},{"type":"p","text":"こうしたAI倫理やAIの社会的影響についての議論は、2010年代半ばまでは主に研究者や専門家による仮説的な議論にとどまりがちであった。しかし、このような生成AIの急速な普及と社会的な情勢の変化によって、AIの社会的影響は、法制度の整備を含め、具体的な対応が必要な喫緊の課題へと変化している。特に、生成AIの発展は従来の技術的・倫理的な議論の枠組みを大きく超えている。かつては「難解な技術」「専門家のためのツール」というイメージが強かったAIが、いまや日常生活に寄り添うパートナーとして認識されるようになり、その影響力は社会の隅々にまで及びつつある。この変化は、AIの利活用に関する新たな倫理的・法的・社会的課題（ethical, legal and social issues, ELSI）を浮き彫りにしている。"},{"type":"p","text":"AIの進歩が非常に速い一方で、法律や制度の整備がそのスピードに追いついておらず、この「時間のずれ」が大きな課題となっている。例えば、現在、画像・動画生成において生み出されたコンテンツから利益を得るのが、学習元となったイラストを描いてきた創作者たちではなく、そのAIサービスを運用するプラットフォーマーであったり、それに投資する資本家であるというのもまた、技術の進化に「あるべき社会」とそれを支える制度設計の議論が追いついていないことを示す一例だろう。"},{"type":"p","text":"こうした中で、AIの未来を専門家任せにせず、社会の一員である私たち1人1人がその担い手となるという視点が重要だ。開発者や利用者に限らず、政策立案者や市民全体がAIを理解し、社会の中でAI利用に関する対話を重ねていくことが求められている。1人1人の市民がAIの基礎知識を身につけることは、個人にとってはもちろん、社会にとっても大きな意味を持つ。AIの光と影を理解する人が増えることで、企業や政府への健全なチェック機能が働き、より公平で透明なルール作りが促されるからだ。"},{"type":"p","text":"いまやAIは一部の専門家のものではなく、経営や行政、農業、介護、教育など、あらゆる分野の人々にかかわる技術となった。本書は、そうした時代に向けた最初の一歩として、文理の枠を超え、AI技術とその哲学、社会課題を複合的に学ぶための「現代の教養」への入り口となることを目指している。"}]},{"heading":"0.3 未来の技術としてのAI","blocks":[{"type":"p","text":"生成AIが実現している現状の技術群は、やはりどこかで「ワクワクする存在」でもある。今日の状況は、2010年代まで夢物語のように語られてきたSFが、突如として現実のものとなったような状況であり、かつてSF作品で描かれた未来の技術が実際に目の前に存在していることは、確かにエキサイティングな事実といえるだろう。振り返れば、新幹線や携帯電話、SNS、動画配信サービスも、かつては「想像もできない」非現実的な存在だった。私たちの頭の中を百年から数百年前にタイムスリップさせ、その時代の人々の視点で現代を見てみれば、今日の技術がいかに圧倒的で特別なものであるかが理解できる。AI技術はSF作品における典型的なモチーフであり、その一部が現実のものとなったいま、私たち人類は未踏の地へと歩みを進めているということを実感させる。SFアニメで夢見ていた時代が近づいている現在、私たちは一体次に何を夢見るのだろうか。そしてどんな未来を創っていくのだろうか。"}]},{"heading":"0.4 AIが問う人間観","blocks":[{"type":"p","text":"現在のAIの進歩、そしてSFに描かれるような未来のAIは、私たちのアイデンティティや「人間らしさ」の根幹を問い直し始めている。"},{"type":"p","text":"AIにできることが急速に増え、これまで「人間にしかできない」と考えられてきた領域が揺らぎ始めている。例えば、文章を書いたり、美しい絵画を描いたり、心沸き立つ音楽を作曲したりといった創造的な活動もできるようになり、それらはもはや人間の聖域ではなくなった。第13章で触れるように、2010年代前半の第3次AIブームの時期には、AIは結局のところ定型化された仕事しかできず、創造的な仕事や人と向き合う仕事は人間に残されるという見方が広く流布していた。しかし、2020年代の生成AI時代に入ると、むしろそうした仕事こそがAIの得意分野であるという見方が広がりつつある。"},{"type":"p","text":"こうした、AIの得意・不得意のアンバランスさは興味深い。これまで、知的であったり、創造的であったりするものは人間ならではの知能の表れとして捉えられてきた一方、身体的な動作や作業はそうとはみなされてこなかった。しかし、チェスの世界チャンピオンに勝つような高度な知能は再現できるのに、子どもでもできる部屋の片づけといった身体的な作業は、現代のAIがロボットの身体をもってもなかなか難しい。"},{"type":"p","text":"この知能の逆転現象は、私たちが日常的に使う「機械的」「AI的」という言葉の意味すら変えつつある。かつて「機械的」とは、思考を伴わない定型作業を表し、「AI的」は創造性のない応答を指す言葉だった。しかし、かつて人間ならではの聖域とされた創造的な対話や文章作成もいまやAIが得意なタスクとなっている。無感情で定型的な振る舞いをするのが「AIのようだ」と表現されることも、もはや時代遅れのイメージとなりつつあるのかもしれない。一方で、柔軟な身体作業はまだ比較的苦手である。このことは、私たち人間にとって本質的な知能とは何なのか、という根源的な問いを投げかけている。"},{"type":"p","text":"AIという技術は、単なる道具としての側面だけでなく、私たちの人間観そのものを変革する力を持っている。技術をどう使うかという議論だけでなく、AIと共存する社会で、私たちはどのような人間でありたいのか、どのような社会を築きたいのか。1人1人がこの問いに向き合うことが、いままさに求められている。"}]},{"heading":"0.5 AIに対する3つの態度","blocks":[{"type":"p","text":"AIはこれまでにない強力なツールでもあり、新たな社会問題を生み出す存在でもあり、ワクワクする未来の技術でもあり、人間観に変更を迫る存在でもある。このように視点によってさまざまな顔を持つAIだが、本書ではAIへの態度・問題関心を以下の3つに分けて考えてみたい。"},{"type":"h4","text":"❶技術としてのAI"},{"type":"p","text":"機械学習や深層学習をはじめとする技術的な側面への興味関心である。数理的な理論や実装方法、アルゴリズムの改良、応用可能性の探求など、工学的・技術的な観点からAIにアプローチする。より高性能で信頼性の高いAIシステムをどう実現し、社会に役立てていくかが主な関心事となる。"},{"type":"h4","text":"❷心の哲学としてのAI"},{"type":"p","text":"人工知能という存在を通して、人間の知性や意識、心の本質を問い直す哲学的および認知科学的な興味関心である。AI研究は、単なる思索にとどまらず、知能や心を「作ってみることによって理解する」という構成論的アプローチとしての側面を持つ。AI研究は創設以来、哲学者との対話を重視してきており、単なる技術開発を超えて人間存在の本質に迫る試みでもある。"},{"type":"h4","text":"❸社会の中のAI"},{"type":"p","text":"AIの普及が社会にもたらす変化や影響への興味関心である。雇用の変化、教育のあり方、倫理的な課題、法制度の整備など、社会システムのさまざまな側面でAIがもたらす変革を考察する。ここでは、AIと人間が共生する社会をいかに構築していくかが中心的な課題となる。"},{"type":"p","text":"これら3つの視点は相互に関連し合いながら、私たちのAIに対する理解と向き合い方を形づくっている。技術的な進歩は哲学的な問いを生み、それらは社会に広く影響する。哲学的な問いや概念、あるいは社会からの期待や懸念が、次の技術を方向づけもする。このAIの技術、哲学、社会的観点の不可分な関係について複合的な視点を持つことで、AIという現象をより立体的に捉えることが可能となるだろう。"}]},{"heading":"0.6 本書の構成","blocks":[{"type":"p","text":"本書では、「技術としてのAI」「心の哲学としてのAI」「社会の中のAI」という3つの観点から、AI時代を生きるためのリテラシーにふさわしいと筆者らが考える内容を選び、以下の14章構成とした（図0.1）。"},{"type":"p","text":"●第1章では、生成AIがもたらしている社会的な影響について触れる。"},{"type":"p","text":"●第2章ではAIという概念のさまざまな定義や、その発展の歴史的経緯を振り返る。"},{"type":"p","text":"●続く第3章～第7章では、AIとよりよくつきあうために必要となる、AI技術についての基礎的な知識を扱う。第3章ではかつてAI研究の主流であった記号的AIの考え方とその限界について解説し、第4章ではデータから知識を獲得する機械学習の考え方と主要な学習の枠組みを整理する。続いて第5章では、深層学習や基盤モデルによって生成AIが成立した技術的背景をたどり、第6章にて自然言語処理の発展を通して大規模言語モデルの仕組みと特徴について解説する。第7章ではロボティクスを題材として、AIが身体を持ち実世界で知能を発揮する可能性と課題を展望する。"},{"type":"p","text":"●第8章で、AIの進展とともに心の科学が発展してきた過程に橋渡しを行ったうえで、第9章ではAIは意識を持てるか、第10章では感情を持てるか、第11章では人間になれるかという根本的な問いを哲学（およびAI研究）がどのように扱ってきたかを見ていく。"},{"type":"p","text":"●第12章では、本章で触れたAIのリスクに社会として対処する「AIガバナンス」の考え方を概観する。"},{"type":"p","text":"●さらに今後は、AIは単なる入出力システムを超えて、「自律性」や「主体性」を備えたエージェント技術となり、それに伴って、多くの新しい哲学的・倫理的問題が出てくるだろう。未来のAIと人間社会のかかわり方について第13章で扱う。"},{"type":"p","text":"●最後の第14章にて、本書の全体を振り返りつつ、AI社会の作り方、AI社会の中での生き方について考える。"},{"type":"figure","ref":"図0.1","caption":"各章の位置づけ"},{"type":"p","text":"どの章も独立したものとして読むことができる。大学の講義などで一通りの内容を扱う場合第1章から順番に学んでいただくことを想定しているが、すでにどれかの専門知識がある方には、自身が詳しくない部分を中心に読んでいただくとよいだろう。本書で扱いきれていない話題については、各章末の参考文献にぜひ当たっていただきたい。"},{"type":"p","text":"「AIと暮らす時代」は私たちにポジティブにもネガティブにも課題を突きつけている。それは機会であり、脅威でもある。それは私たちが思い描く夢でもあり、すでにここにある現実でもある。そんな、視点によってさまざまな顔を持つAIという存在と、私たちはどう向き合っていくべきか。本書が、その複雑で本質的な問いを、読者1人1人が自分自身の言葉で考えていくための羅針盤となることを願っている。"}]}],"full_public":true},
 {"number":1,"title":"社会の中の AI","part":"社会","sections":["1.1 生成AIの時代","1.2 生成AIで何が変わったのか","1.3 現代におけるAIのリスク","1.4 利用者自身にとってのリスク","1.5 他者や社会が被るリスク：AIのELSI","1.6 人間に近づくAI"],"digest":["本章はまず、生成AIが自然言語によるプロンプトを通じて何を可能にしたのかを整理し、能力の凹凸を「ギザギザのフロンティア」という言葉で捉える。そのうえで、AIには従来の製品と違って取扱説明書や明確な責任の所在がないという特殊性を指摘し、リスクへの向き合い方の難しさを浮き彫りにする。","リスクは「利用者自身」「他者や社会全体」「他者としてのAI」という3層に整理される。ハルシネーションや誤った予測から、バイアスによる格差の助長、著作権・環境負荷まで、個々の事例が丁寧に紹介されるが、単なる列挙にとどまらず、AIと人間社会が出力とデータを介してバイアスを強化し合う悪循環という構造的な視点が導入される。","終盤では、対話型AIが記憶機能を持つことで「道具」から「相手」へと体験が変質しつつある現状に焦点が当てられる。AIを擬人化することで生じるプライバシーや心理的依存のリスクを紹介しつつ、その是非の判定には意識や感情をめぐる哲学的な考察が不可欠であるとして、後続の章への橋渡しとする。"],"highlight":"AIには取扱説明書も明確な責任の所在もないため、リスクへの対処を専門家や規制だけに委ねられず、利用者自身が担う部分が大きくなっている。","quote":{"text":"AIの能力のフロンティア（最前線）は、開発者にも予想できない凹凸がある。","note":"生成AIの性能が課題ごとに大きくばらつく特性を評した一節。"},"reading_guide":[{"title":"あなたを支配し、社会を破壊する、AI・ビッグデータの罠","author":"キャシー・オニール","note":"2010年代のAI倫理論を代表する一冊として紹介されている。"},{"title":"AI Snake Oil: What Artificial Intelligence Can Do, What It Can't, and How to Tell the Difference","author":"Arvind Narayanan, Sayash Kapoor","note":"AIの過剰宣伝を見抜く視点を提供する書として挙げられている。"},{"title":"AI・ロボットからの倫理学入門","author":"久木田水生、神崎宣次、佐々木拓、本田康二郎","note":"応用倫理学の観点からAI・ロボットの倫理問題を扱う入門書として紹介されている。"}],"question":"生成 AI のもたらす可能性と課題のバランスを取りながら、個人と社会はいかに対応すべきか？","theme":"生成 AI の登場による社会への具体的な影響と、利用者個人および社会全体が直面するリスクの多層性を検討する。"},
@@ -765,6 +800,49 @@ function renderChapterZeroFulltext(c){
     </div>`).join("");
 }
 
+const ADDENDA_ENTRIES = (window.ADDENDA && Array.isArray(window.ADDENDA.entries)) ? window.ADDENDA.entries : [];
+function addendaFor(n, kind){ return ADDENDA_ENTRIES.filter(a=>a.chapter===n && (a.kind||"theme")===kind); }
+function fmtAdded(d){ const m=String(d||"").match(/^(\d{4})-(\d{2})/); return m ? `${m[1]}年${Number(m[2])}月追記` : ""; }
+function addendumHtml(a){
+  const meta = [fmtAdded(a.added), a.anchor ? `${a.anchor}に関連` : "", a.authors ? `執筆：${a.authors}` : ""].filter(Boolean).map(esc).join("　｜　");
+  const ref = t => esc(t).replace(/［(\d+)］/g,(m,k)=>`<sup class="addendum-ref"><a href="#src-${esc(a.id)}-${k}">[${k}]</a></sup>`);
+  const body = (a.body||[]).map(p=>p.startsWith("## ")?`<h5 class="addendum-sub">${esc(p.slice(3))}</h5>`:`<p>${ref(p)}</p>`).join("");
+  const src = (a.sources||[]).length ? `<div class="addendum-srch">出典</div><ol class="addendum-sources">${a.sources.map((x,i)=>`<li id="src-${esc(a.id)}-${i+1}"><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a></li>`).join("")}</ol>` : "";
+  return `<div class="addendum" id="addendum-${esc(a.id)}"><div class="addendum-meta">${meta}</div><h4 class="addendum-title">${esc(a.title)}</h4>${body}${src}</div>`;
+}
+function addendaBlockHtml(n){
+  const list = addendaFor(n,"theme");
+  if(!list.length) return "";
+  return `<div class="addenda-block"><h3>刊行後の動き</h3><p class="addenda-lead">本書の刊行（2026年2月12日）後の出来事や議論を、著者が追記したものです。本文の記述は刊行時点のままです。<a href="#addenda">補遺の一覧</a></p>${list.map(addendumHtml).join("")}</div>`;
+}
+function readingAddenda(n){
+  return addendaFor(n,"reading").flatMap(a=>(a.books||[]).map(b=>Object.assign({added:a.added},b)));
+}
+function renderAddendaMount(){
+  if(!ADDENDA_ENTRIES.length) return "";
+  const updated = (window.ADDENDA && window.ADDENDA.updated) ? `最終更新：${esc(window.ADDENDA.updated)}` : "";
+  const chs = DATA.chapters.filter(c=>ADDENDA_ENTRIES.some(a=>a.chapter===c.number));
+  const body = chs.map(c=>{
+    const themes = addendaFor(c.number,"theme");
+    const books = readingAddenda(c.number);
+    return `<div class="addenda-ch"><div class="addenda-ch-head"><a href="#chapter-${c.number}">第${c.number}章　${esc(c.title)}</a></div>
+      ${themes.map(addendumHtml).join("")}
+      ${books.length ? `<div class="addendum"><div class="addendum-meta">${esc(fmtAdded(books[0].added))}　｜　読書案内に追加</div>${books.map(b=>`<p><strong>${esc(b.title)}</strong>（${esc(b.author)}）　${esc(b.note||"")}</p>`).join("")}</div>` : ""}
+    </div>`;
+  }).join("");
+  return `
+  <details class="lexicon-acc" id="addenda">
+    <summary>
+      <span class="lexicon-acc-title">刊行後の補遺</span>
+      <span class="lexicon-acc-sub">刊行後の出来事や議論を、著者が章ごとに追記しています。${updated}</span>
+    </summary>
+    <div class="lexicon-body">
+      <p class="addenda-index-intro">AIをめぐる状況は本書の刊行後も大きく動いています。本書の章立てを手がかりに、刊行後に現れた技術・出来事・政策・議論のうち、本書の議論を読むうえで知っておきたいものを追記しています。各章のページにも同じ内容を載せています。</p>
+      ${body}
+    </div>
+  </details>`;
+}
+
 function renderChapterAccordion(c){
   const n = c.number;
   const isCh0 = n===0 && c.fulltext;
@@ -795,16 +873,24 @@ function renderChapterAccordion(c){
         </ul>
       </div>`;
 
-  const rgHtml = (c.reading_guide && c.reading_guide.length) ? `
+  const rgAdded = readingAddenda(n);
+  const rgHtml = ((c.reading_guide && c.reading_guide.length) || rgAdded.length) ? `
       <div class="reading-guide">
         <h3>読書案内</h3>
-        ${c.reading_guide.map(r=>`
+        ${(c.reading_guide||[]).map(r=>`
         <div class="rg-item">
           <div class="rg-title">${esc(r.title)}</div>
           <div class="rg-author">${esc(r.author)}</div>
           <div class="rg-note">${esc(r.note)}</div>
         </div>`).join("")}
+        ${rgAdded.map(r=>`
+        <div class="rg-item">
+          <div class="rg-title">${esc(r.title)}<span class="rg-added">${esc(fmtAdded(r.added))}</span></div>
+          <div class="rg-author">${esc(r.author)}</div>
+          <div class="rg-note">${esc(r.note||"")}</div>
+        </div>`).join("")}
       </div>` : "";
+  const addHtml = addendaBlockHtml(n);
 
   const bodyHtml = isCh0 ? `
       <div class="chapter-part label ${esc(partClass(c.part))}">${esc(c.part||"")}</div>
@@ -817,6 +903,7 @@ function renderChapterAccordion(c){
       <div class="chapter-digest">${digestHtml}</div>
       ${quoteHtml}
       ${sectionsHtml}
+      ${addHtml}
       ${rgHtml}`;
 
   return `
@@ -1012,6 +1099,12 @@ function buildPage(){
       <img src="${HOME_FIG.file}" alt="${esc(HOME_FIG.caption)}" loading="lazy" onerror="this.parentElement.style.display='none'">
       <figcaption>${esc(HOME_FIG.caption)}（書籍より転載）</figcaption>
     </figure>`;
+  const addMount = renderAddendaMount();
+  if(addMount){
+    document.getElementById("addenda-mount").innerHTML = addMount;
+    document.getElementById("addenda-wrap").hidden = false;
+    document.querySelectorAll("[data-addenda-link]").forEach(el=>{ el.hidden = false; });
+  }
   document.getElementById("lexicon-mount").innerHTML = renderLexiconMount();
   document.getElementById("book-mount").innerHTML = renderBookMount();
   attachLexiconHandlers();
@@ -1048,6 +1141,7 @@ function normalizeHash(rawHash){
     return "chapter-"+n;
   }
   if(h==="/lexicon" || h.startsWith("/lexicon")) return "lexicon";
+  if(h==="/addenda" || h.startsWith("/addenda")) return "addenda";
   if(h==="/book" || h.startsWith("/book")) return "book";
   if(h==="" || h==="/") return "";
   return h;
