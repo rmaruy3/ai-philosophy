@@ -1,2 +1,5 @@
 .DS_Store
 Thumbs.db
+
+# 共著者内部の作業データ（公開しない）
+tracker/
